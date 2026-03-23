@@ -21,10 +21,9 @@
 
   /* ── Shared container ── */
   .container {
-    max-width: 1200px;
+    width: min(1200px, calc(100% - 80px));
     margin: 0 auto;
-    padding: 0 40px;
-    width: 100%;
+    padding: 0;
   }
 
   /* ── Top nav ── */
@@ -65,7 +64,7 @@
     align-items: flex-start;
   }
   .hero-left { flex: 1; min-width: 260px; }
-  .hero-left .eyebrow { font-size: 1rem; color: #888; letter-spacing: .03em; margin-bottom: 6px; }
+  .hero-left .eyebrow { font-size: 1.2rem; color: #912238; letter-spacing: normal; margin-bottom: 6px; font-weight: 700; }
   .hero-left h1 { font-size: 2.75rem; font-weight: 700; line-height: 1.25; margin-bottom: 20px; }
 
   /* search */
@@ -84,7 +83,7 @@
 
   /* popular */
   .popular { margin-top: 32px; }
-  .popular p { font-size: 1rem; color: #222; margin-bottom: 8px; font-weight: 400; }
+  .popular p { font-size: 1.2rem; color: #222; margin-bottom: 10px; font-weight: 600; line-height: 1.3; }
   .popular-tags { display: flex; flex-wrap: wrap; gap: 8px; }
   .tag {
     display: inline-block; padding: 5px 20px; background: #fff; border-radius: 2px;
@@ -97,9 +96,26 @@
   .quick-links {
     background: #fff;
     border-top: 1px solid rgba(0,0,0,0.15);
-    padding: 28px 0;
+    padding: 60px 0 0;
   }
-  .quick-links .container { display: flex; gap: 12px; }
+  .quick-links .container {
+    display: block;
+  }
+  .quick-access-header {
+    margin-top: 0 !important;
+    margin-bottom: 14px !important;
+    justify-content: flex-start;
+  }
+  .quick-access-header h2 {
+    line-height: 1.05;
+    text-align: left;
+    margin: 0;
+  }
+  .quick-links-row {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+  }
   .quick-link {
     display: flex; flex-direction: column; align-items: center; gap: 8px;
     flex: 1; padding: 28px 8px; border-radius: 2px; cursor: pointer;
@@ -107,25 +123,79 @@
     box-shadow: 0 1px 4px rgba(0,0,0,.08);
     transition: background .15s, border-color .15s, box-shadow .2s; text-decoration: none; color: #333;
   }
-  .quick-link:hover { background: #f5f5f5; border-color: rgba(0,0,0,0.28); box-shadow: 0 4px 12px rgba(0,0,0,.13); }
+  .quick-link:hover { background: #f5f5f5; border-color: #912238; box-shadow: 0 4px 12px rgba(0,0,0,.13); }
   .quick-link .icon-circle {
     width: 80px; height: 80px; border-radius: 2px;
     background: none; display: flex; align-items: center; justify-content: center;
   }
+  .quick-link .icon-circle img {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    display: block;
+  }
+  .quick-link .icon-circle img.moodle-icon { transform: translateX(-8px); }
   .quick-link .quick-label { font-size: 1rem; text-align: center; color: #444; font-weight: 400; }
-
   /* ── Main layout ── */
-  .main { max-width: 1200px; margin: 0 auto; padding: 24px 40px 80px; }
+  .main { width: min(1200px, calc(100% - 80px)); margin: 0 auto; padding: 24px 0 80px; }
 
 
   /* ── Section headers ── */
   .section-header {
-    display: flex; justify-content: space-between; align-items: baseline;
+    display: flex; justify-content: space-between; align-items: center;
     margin-bottom: 20px; margin-top: 56px;
   }
+  .main > .section-header:first-of-type { margin-top: 12px; }
   .section-header h2 { font-size: 1.75rem; font-weight: 700; }
   .section-header a { font-size: 1rem; color: #912238; text-decoration: none; }
   .section-header a:hover { text-decoration: underline; }
+
+  /* ── Important deadlines ── */
+  .deadlines-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .deadline-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 2px;
+    padding: 18px;
+  }
+  .deadline-card--urgent {
+    border-left: 4px solid #912238;
+    background: #fcf7f8;
+  }
+  .deadline-due {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #912238;
+    margin-bottom: 10px;
+  }
+  .deadline-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 8px;
+    color: #222;
+  }
+  .deadline-desc {
+    font-size: 0.98rem;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .deadline-cta {
+    font-size: 0.95rem;
+    color: #912238;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .deadline-cta:hover { text-decoration: underline; }
+  @media (max-width: 980px) {
+    .deadlines-grid { grid-template-columns: 1fr; }
+  }
 
   /* ── Key dates ── */
   .key-dates-layout { display: grid; grid-template-columns: 70fr 30fr; gap: 32px; }
@@ -139,7 +209,7 @@
   .date-block .month { font-size: 1rem; text-transform: uppercase; color: #222; font-weight: 600; }
   .date-block .day { font-size: 1.5rem; font-weight: 700; color: #222; line-height: 1; }
   .date-content { flex: 1; }
-  .date-content .title { font-size: 1rem; font-weight: 500; margin-bottom: 4px; }
+  .date-content .title { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
   .date-content .desc { font-size: 1rem; color: #777; }
 
   .dates-footer { display: flex; gap: 16px; margin-top: 12px; }
@@ -163,7 +233,7 @@
   .interruptions-list { flex: 1; }
   .interruption-item { padding: 14px 0; border-bottom: 1px solid rgba(0,0,0,0.15); }
   .interruption-item:first-child { border-top: 1px solid rgba(0,0,0,0.15); }
-  .interruption-item .title { font-size: 1rem; font-weight: 500; color: #222; margin-bottom: 4px; cursor: pointer; }
+  .interruption-item .title { font-size: 1rem; font-weight: 600; color: #222; margin-bottom: 4px; cursor: pointer; }
   .interruption-item .title:hover { color: #912238; }
   .interruption-item .location {
     display: inline-block; font-size: 12px; background: #ede4e7;
@@ -180,15 +250,21 @@
   }
   .shuttle-card:hover { box-shadow: 0 6px 18px rgba(0,0,0,.13); border-color: rgba(0,0,0,0.28); }
   .shuttle-img {
-    width: 100%; height: 110px;
+    width: 100%; height: 140px;
     background: none;
     display: flex; align-items: center; justify-content: center;
     font-size: 2.25rem;
   }
   .shuttle-card .shuttle-label {
-    padding: 1.5rem 1.5rem 0.5rem; font-size: 1rem; font-weight: 600; color: #222;
+    padding: 1.5rem 1.5rem 0.5rem; font-size: 1.18rem; font-weight: 600; color: #222;
   }
   .shuttle-card .shuttle-lines { padding: 0 1.5rem 1.5rem; }
+  .shuttle-card .shuttle-desc {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.5;
+    margin: 0;
+  }
   .shuttle-lines .line {
     height: 8px; background: #eee; border-radius: 2px; margin-bottom: 6px;
   }
@@ -247,7 +323,7 @@
     background: #ede4e7;
   }
   .training-card-body { padding: 1.5rem; }
-  .training-card-body .card-title { font-size: 1rem; font-weight: 600; margin-bottom: 4px; color: #222; }
+  .training-card-body .card-title { font-size: 1.18rem; font-weight: 600; margin-bottom: 4px; color: #222; }
   .training-card-body .card-meta { font-size: 1rem; color: #888; }
   .carousel-controls { display: flex; gap: 0.5rem; align-items: center; }
   .carousel-arrow {
@@ -259,7 +335,7 @@
   .carousel-arrow:hover { box-shadow: 0 4px 12px rgba(0,0,0,.18); border-color: rgba(0,0,0,0.28); }
   .carousel-arrow.disabled { opacity: 0.3; pointer-events: none; }
 
-  /* ── What's new ── */
+  /* ── What's happening ── */
   .news-tabs { display: flex; gap: 0; border-bottom: 1px solid rgba(0,0,0,0.15); margin-bottom: 24px; }
   .news-tab {
     padding: 8px 0; margin-right: 24px; font-size: 1rem; font-weight: 500; cursor: pointer;
@@ -282,7 +358,7 @@
     overflow: hidden; cursor: pointer;
     box-shadow: 0 1px 3px rgba(0,0,0,.07);
     transition: box-shadow .2s, border-color .2s;
-    display: flex; flex-direction: column;
+    display: flex; flex-direction: column-reverse;
   }
   .news-featured:hover { box-shadow: 0 6px 18px rgba(0,0,0,.13); border-color: rgba(0,0,0,0.28); }
   .news-featured-img {
@@ -293,7 +369,7 @@
   }
   .news-featured-body { padding: 1.5rem; }
   .news-featured-body .news-category { font-size: 1rem; color: #888; font-weight: 500; margin-bottom: 8px; }
-  .news-featured-body .news-title { font-size: 1.35rem; font-weight: 700; margin-bottom: 10px; line-height: 1.3; }
+  .news-featured-body .news-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 10px; line-height: 1.3; }
   .news-featured-body .news-excerpt { font-size: 1.1rem; color: #666; line-height: 1.6; }
 
   /* Secondary — 1 col, image on top (mirrors featured layout) */
@@ -303,7 +379,13 @@
     overflow: hidden; cursor: pointer;
     box-shadow: 0 1px 3px rgba(0,0,0,.07);
     transition: box-shadow .2s, border-color .2s;
-    display: flex; flex-direction: column;
+    display: flex; flex-direction: column-reverse;
+  }
+  #panel-accolades .news-featured,
+  #panel-accolades .news-secondary,
+  #panel-concordians .news-featured,
+  #panel-concordians .news-secondary {
+    flex-direction: column;
   }
   .news-secondary:hover { box-shadow: 0 6px 18px rgba(0,0,0,.13); border-color: rgba(0,0,0,0.28); }
   .news-secondary-img {
@@ -314,7 +396,7 @@
   }
   .news-secondary-body { padding: 1.5rem; }
   .news-secondary-body .news-category { font-size: 1rem; color: #888; font-weight: 500; margin-bottom: 6px; }
-  .news-secondary-body .news-title { font-size: 1.1rem; font-weight: 700; line-height: 1.35; margin-bottom: 8px; }
+  .news-secondary-body .news-title { font-size: 1.2rem; font-weight: 700; line-height: 1.35; margin-bottom: 8px; }
   .news-secondary-body .news-excerpt { font-size: 1rem; color: #666; line-height: 1.55; }
 
   /* Tertiary column — 1 col, text-only stacked items */
@@ -330,7 +412,97 @@
   }
   .news-tertiary-item:hover { box-shadow: 0 6px 18px rgba(0,0,0,.13); border-color: rgba(0,0,0,0.28); }
   .news-tertiary-item .news-category { font-size: 1rem; color: #888; font-weight: 500; margin-bottom: 6px; }
-  .news-tertiary-item .news-title { font-size: 1rem; font-weight: 600; color: #222; line-height: 1.4; }
+  .news-tertiary-item .news-title { font-size: 1.1rem; font-weight: 600; color: #222; line-height: 1.4; }
+  #panel-announcements .news-grid { grid-template-columns: repeat(4, 1fr); }
+  #panel-announcements .announcement-card {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 2px;
+    padding: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,.07);
+    transition: box-shadow .2s, border-color .2s;
+  }
+  #panel-announcements .announcement-card:hover {
+    box-shadow: 0 6px 18px rgba(0,0,0,.13);
+    border-color: rgba(0,0,0,0.28);
+  }
+  #panel-announcements .announcement-card .news-category {
+    font-size: 1rem;
+    color: #888;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  #panel-announcements .announcement-card .news-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #222;
+    line-height: 1.4;
+  }
+  /* ── Promo hero block ── */
+  .promo-hero {
+    margin-top: 36px;
+    width: calc(100% + 96px);
+    max-width: 1296px;
+    margin-left: -48px;
+    border-radius: 2px;
+    min-height: 430px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #dfc9cf 0%, #cfaeb7 35%, #d9c0c6 65%, #e7d7db 100%);
+  }
+  @media (max-width: 1296px) {
+    .promo-hero {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+  .promo-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 75% 30%, rgba(255,255,255,0.35), transparent 42%);
+    pointer-events: none;
+  }
+  .promo-hero-card {
+    position: absolute;
+    left: 48px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 350px;
+    background: #f5f5f5;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 2px;
+    padding: 24px 24px 22px;
+    z-index: 1;
+  }
+  .promo-hero-card h3 {
+    font-size: 1.65rem;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    font-weight: 700;
+    color: #222;
+  }
+  .promo-hero-card p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 18px;
+  }
+  .promo-hero-card .promo-btn {
+    display: inline-block;
+    background: #912238;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 2px;
+    text-decoration: none;
+  }
+  .promo-hero-card .promo-btn:hover { background: #7b1c2f; }
+  @media (max-width: 1296px) {
+    .promo-hero-card { left: 24px; }
+  }
 
   /* ── White card wrapper ── */
   .card-wrap {
@@ -386,12 +558,6 @@
 <div class="topnav">
   <div class="container">
     <div class="brand">Carrefour</div>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">News</a>
-      <a href="#">Services</a>
-      <a href="#">Forms</a>
-    </nav>
     <div class="nav-actions">
       <div class="avatar">MC</div>
     </div>
@@ -407,7 +573,7 @@
 
     <div class="search-wrap">
       <span class="search-icon material-icons-sharp mi-md" style="color:#912238">search</span>
-      <input type="text" placeholder="What are you looking for?">
+      <input type="text" placeholder="Search all services and resources">
     </div>
 
     <div class="popular">
@@ -429,26 +595,29 @@
 <!-- Quick links -->
 <div class="quick-links">
   <div class="container">
+  <div class="section-header quick-access-header"><h2>Quick Access</h2></div>
+  <div class="quick-links-row">
   <a class="quick-link" href="#">
     <div class="icon-circle"><span class="material-icons-sharp mi-3xl" style="color:#912238">hub</span></div>
-    <span class="quick-label">UNITY</span>
+    <span class="quick-label"><b>UNITY</b></span>
   </a>
   <a class="quick-link" href="#">
     <div class="icon-circle"><span class="material-icons-sharp mi-3xl" style="color:#912238">person</span></div>
-    <span class="quick-label">My HR</span>
+    <span class="quick-label"><b>My HR</b></span>
   </a>
   <a class="quick-link" href="#">
     <div class="icon-circle"><span class="material-icons-sharp mi-3xl" style="color:#912238">savings</span></div>
-    <span class="quick-label">Pension &amp; benefits</span>
+    <span class="quick-label"><b>Pension &amp; benefits</b></span>
   </a>
   <a class="quick-link" href="#">
     <div class="icon-circle"><span class="material-icons-sharp mi-3xl" style="color:#912238">payments</span></div>
-    <span class="quick-label">Payroll</span>
+    <span class="quick-label"><b>Payroll</b></span>
   </a>
   <a class="quick-link" href="#">
-    <div class="icon-circle"><span class="material-icons-sharp mi-3xl" style="color:#912238">receipt_long</span></div>
-    <span class="quick-label">Payroll</span>
+    <div class="icon-circle"><img class="moodle-icon" src="./assets/moodle.svg" alt="Moodle"></div>
+    <span class="quick-label"><b>Moodle</b></span>
   </a>
+  </div>
   </div><!-- /container -->
 </div>
 
@@ -456,9 +625,43 @@
 <div class="main">
 
 
-  <!-- What's new -->
+  <!-- Important deadlines -->
   <div class="section-header">
-    <h2>What's new</h2>
+    <h2>Important deadlines</h2>
+  </div>
+
+  <section class="deadlines-grid" aria-label="Important deadlines">
+    <article class="deadline-card deadline-card--urgent">
+      <div class="deadline-due">Due March 31</div>
+      <h3 class="deadline-title">Complete mandatory privacy training</h3>
+      <p class="deadline-desc">
+        Required for all faculty and staff. Access will be restricted if not completed.
+      </p>
+      <a class="deadline-cta" href="#">&rarr; Complete training</a>
+    </article>
+
+    <article class="deadline-card">
+      <div class="deadline-due">Due April 7</div>
+      <h3 class="deadline-title">Submit final grades for Winter term</h3>
+      <p class="deadline-desc">
+        Grades must be submitted through the Faculty Centre by the deadline.
+      </p>
+      <a class="deadline-cta" href="#">&rarr; Go to Faculty Centre</a>
+    </article>
+
+    <article class="deadline-card">
+      <div class="deadline-due">Due April 15</div>
+      <h3 class="deadline-title">Confirm your benefits enrollment</h3>
+      <p class="deadline-desc">
+        Review and confirm your selections to avoid interruption in coverage.
+      </p>
+      <a class="deadline-cta" href="#">&rarr; Review benefits</a>
+    </article>
+  </section>
+
+  <!-- What's happening -->
+  <div class="section-header">
+    <h2>What's happening</h2>
   </div>
 
   <div class="news-tabs">
@@ -470,33 +673,21 @@
   <!-- Panel: Announcements -->
   <div class="news-panel" id="panel-announcements">
     <div class="news-grid">
-      <div class="news-featured">
-        <div class="news-featured-img"></div>
-        <div class="news-featured-body">
-          <div class="news-category">Announcement</div>
-          <div class="news-title">President's Message: University Strategic Plan 2026–2030 Now Available</div>
-        </div>
+      <div class="announcement-card">
+        <div class="news-category">Human Resources</div>
+        <div class="news-title">2025 tax slips and forms available on UNITY</div>
       </div>
-      <div class="news-secondary">
-        <div class="news-secondary-img"></div>
-        <div class="news-secondary-body">
-          <div class="news-category">HR update</div>
-          <div class="news-title">Updated Hybrid Work Policy Effective April 1, 2026</div>
-        </div>
+      <div class="announcement-card">
+        <div class="news-category">Voluntary part-time leave</div>
+        <div class="news-title">Eligible employees can temporarily reduce their workweek without pay</div>
       </div>
-      <div class="news-tertiary">
-        <div class="news-tertiary-item">
-          <div class="news-category">Campus</div>
-          <div class="news-title">Hall Building Renovation Phase 2 Begins This Summer</div>
-        </div>
-        <div class="news-tertiary-item">
-          <div class="news-category">Reminder</div>
-          <div class="news-title">Annual Mandatory Privacy Training Due by March 31</div>
-        </div>
-        <div class="news-tertiary-item">
-          <div class="news-category">IT services</div>
-          <div class="news-title">Scheduled Maintenance on UNITY Portal – Saturday April 5, 2:00–6:00 AM</div>
-        </div>
+      <div class="announcement-card">
+        <div class="news-category">Recognize excellence</div>
+        <div class="news-title">Nominate a graduating Black student for a Black Excellence Award</div>
+      </div>
+      <div class="announcement-card">
+        <div class="news-category">Symposium</div>
+        <div class="news-title">Indigenous land-based educational practices</div>
       </div>
     </div>
   </div>
@@ -507,29 +698,25 @@
       <div class="news-featured">
         <div class="news-featured-img"></div>
         <div class="news-featured-body">
-          <div class="news-category">Research award</div>
-          <div class="news-title">Prof. Isabelle Tremblay Awarded Canada Research Chair in AI Ethics</div>
+          <div class="news-category">March 18, 2026</div>
+          <div class="news-title">Concordia to award an honorary doctorate to Gina McCarthy, former White House National Climate Advisor</div>
         </div>
       </div>
       <div class="news-secondary">
         <div class="news-secondary-img"></div>
         <div class="news-secondary-body">
-          <div class="news-category">Team recognition</div>
-          <div class="news-title">Student Services Team Wins Excellence in Service Award 2025</div>
+          <div class="news-category">March 12, 2026</div>
+          <div class="news-title">Concordia students take home top prize at National Public Administration Case Competition</div>
         </div>
       </div>
       <div class="news-tertiary">
         <div class="news-tertiary-item">
-          <div class="news-category">Leadership</div>
-          <div class="news-title">Alumni Relations Director Named to National Advancement Board</div>
+          <div class="news-category">February 9, 2026</div>
+          <div class="news-title">Concordia student Marion Thenault is flying high ahead of her second Olympics</div>
         </div>
         <div class="news-tertiary-item">
-          <div class="news-category">Teaching award</div>
-          <div class="news-title">Dr. Marc Fontaine Receives 2025 Distinguished Teaching Award</div>
-        </div>
-        <div class="news-tertiary-item">
-          <div class="news-category">Grant</div>
-          <div class="news-title">Faculty of Engineering Secures $4.2M NSERC Alliance Grant</div>
+          <div class="news-category">January 19, 2026</div>
+          <div class="news-title">Concordia recognized among top performers in global sustainability index</div>
         </div>
       </div>
     </div>
@@ -541,37 +728,44 @@
       <div class="news-featured">
         <div class="news-featured-img"></div>
         <div class="news-featured-body">
-          <div class="news-category">New appointment</div>
-          <div class="news-title">Dr. Amara Diallo Appointed Vice-Provost, Teaching and Learning</div>
+          <div class="news-category">February 23, 2026</div>
+          <div class="news-title">New AVP brings a wealth of experience leading transformational HR initiatives</div>
         </div>
       </div>
       <div class="news-secondary">
         <div class="news-secondary-img"></div>
         <div class="news-secondary-body">
-          <div class="news-category">Retirement</div>
-          <div class="news-title">Celebrating 32 Years: Louise Bédard Retires from the Registrar's Office</div>
+          <div class="news-category">February 10, 2026</div>
+          <div class="news-title">Concordia's Applied AI Institute appoints new co-directors</div>
         </div>
       </div>
       <div class="news-tertiary">
         <div class="news-tertiary-item">
-          <div class="news-category">New role</div>
-          <div class="news-title">James Ng Joins IITS as Director of Cybersecurity &amp; Infrastructure</div>
+          <div class="news-category">January 20, 2026</div>
+          <div class="news-title">Lauren Farley appointed interim director of Recreation and Athletics</div>
         </div>
         <div class="news-tertiary-item">
-          <div class="news-category">Promotion</div>
-          <div class="news-title">Congratulations to Sofia Reyes on Her Promotion to Associate Dean, Research</div>
-        </div>
-        <div class="news-tertiary-item">
-          <div class="news-category">Welcome</div>
-          <div class="news-title">Welcoming Our 2026 Cohort of Postdoctoral Fellows Across Five Faculties</div>
+          <div class="news-category">December 17, 2025</div>
+          <div class="news-title">A return to Concordia for new CFO</div>
         </div>
       </div>
     </div>
   </div>
 
+  <section class="promo-hero" aria-label="Promotional highlight">
+    <div class="promo-hero-card">
+      <h3>Crisis in empathy discussion</h3>
+      <p>
+        MAR. 31: Join a special event that looks at how political polarization
+        erodes our capacity for empathy.
+      </p>
+      <a class="promo-btn" href="#">Register now</a>
+    </div>
+  </section>
+
   <!-- Key dates & events -->
   <div class="section-header">
-    <h2>Key dates &amp; events</h2>
+    <h2>Featured events</h2>
   </div>
 
   <div class="key-dates-layout">
@@ -580,31 +774,31 @@
         <div class="date-item">
           <div class="date-block">
             <div class="month">Mar</div>
-            <div class="day">28</div>
+            <div class="day">24</div>
           </div>
           <div class="date-content">
-            <div class="title">Good Friday – University Closed</div>
-            <div class="desc">All administrative offices and most services will be closed. Emergency services remain available.</div>
+            <div class="title">Spirituali-Tea, Tradition &amp; Togetherness:</div>
+            <div class="desc">Tomorrow, 2 p.m. - 4 p.m.</div>
           </div>
         </div>
         <div class="date-item">
           <div class="date-block">
-            <div class="month">Apr</div>
-            <div class="day">7</div>
+            <div class="month">Mar</div>
+            <div class="day">26</div>
           </div>
           <div class="date-content">
-            <div class="title">Winter 2026 Grade Submission Deadline</div>
-            <div class="desc">Final grades must be submitted via the Faculty Centre by 11:59 PM.</div>
+            <div class="title">Fripe Concordia</div>
+            <div class="desc">Thursday, 11 a.m. - 6 p.m.</div>
           </div>
         </div>
         <div class="date-item">
           <div class="date-block">
-            <div class="month">Apr</div>
-            <div class="day">15</div>
+            <div class="month">Mar</div>
+            <div class="day">31</div>
           </div>
           <div class="date-content">
-            <div class="title">Spring Convocation – Ticket Distribution Opens</div>
-            <div class="desc">Faculty and staff may request complimentary seats through the Registrar's Office portal.</div>
+            <div class="title">Spirituali-tea at Pop-Up Against Procrastination</div>
+            <div class="desc">Tuesday, 2 p.m. - 3:30 p.m.</div>
           </div>
         </div>
       </div>
@@ -641,14 +835,14 @@
   <div class="interruptions-layout">
     <div class="interruptions-list">
       <div class="interruption-item">
-        <span class="location">MB Building</span>
-        <div class="title">Interruption of Elevator no. 5 – Return to service March 8 – 20, 2026</div>
-        <div class="date-label"><span class="material-icons-sharp mi-sm" style="color:#912238">calendar_today</span> Mon Jan 19 2025</div>
+        <span class="location">GM Building</span>
+        <div class="title">UPDATE: GM Building: Elevator 4 (passenger freight) has returned to service - March 23, 2026</div>
+        <div class="date-label"><span class="material-icons-sharp mi-sm" style="color:#912238">calendar_today</span> March 23, 2026</div>
       </div>
       <div class="interruption-item">
-        <span class="location">EV Building</span>
-        <div class="title">EV Building: Domestic water interruption – January 7, 2026 (11:00)</div>
-        <div class="date-label"><span class="material-icons-sharp mi-sm" style="color:#912238">calendar_today</span> Mon Jan 19 2025</div>
+        <span class="location">GM Building</span>
+        <div class="title">GM Building: Elevator #4 (Passenger freight) - Out of Service - March 18 - April 08, 2026</div>
+        <div class="date-label"><span class="material-icons-sharp mi-sm" style="color:#912238">calendar_today</span> March 16, 2026</div>
       </div>
       <div style="margin-top:12px">
         <a href="#" class="tag">View all</a>
@@ -656,12 +850,14 @@
     </div>
 
     <div class="shuttle-card">
-      <div class="shuttle-img"><span class="material-icons-sharp mi-2xl" style="color:#912238">directions_bus</span></div>
+      <div class="shuttle-img" style="background-color: #ede4e7; display: flex; align-items: center; justify-content: center;">
+        <!-- Placeholder background image for shuttle card -->
+      </div>
       <div class="shuttle-label">Shuttle bus schedule</div>
       <div class="shuttle-lines">
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line short"></div>
+        <p class="shuttle-desc">
+          The shuttle bus offers Concordia students and employees a free ride between the SGW and Loyola Campuses.
+        </p>
       </div>
     </div>
   </div>
